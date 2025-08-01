@@ -34,7 +34,7 @@ param(
 # 服務配置
 $ServiceName = "UniversalTokenMonitor"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$MonitorScript = Join-Path $ScriptDir "universal-token-monitor.js"
+$MonitorScript = Join-Path $ScriptDir "Universal-Token-Monitor.js"
 $PidFile = Join-Path $ScriptDir "monitor.pid"
 $LogFile = Join-Path $ScriptDir "monitor.log"
 
@@ -56,19 +56,21 @@ function Test-NodeExists {
     try {
         $null = Get-Command node -ErrorAction Stop
         return $true
-    } catch {
+    }
+    catch {
         return $false
     }
 }
 
 function Test-MonitorRunning {
     if (Test-Path $PidFile) {
-        $pid = Get-Content $PidFile -ErrorAction SilentlyContinue
-        if ($pid) {
+        $processId = Get-Content $PidFile -ErrorAction SilentlyContinue
+        if ($processId) {
             try {
-                $process = Get-Process -Id $pid -ErrorAction Stop
+                $process = Get-Process -Id $processId -ErrorAction Stop
                 return $true
-            } catch {
+            }
+            catch {
                 Remove-Item $PidFile -Force -ErrorAction SilentlyContinue
                 return $false
             }
@@ -101,12 +103,14 @@ function Start-Monitor {
             $process = Start-Process -FilePath "node" -ArgumentList $MonitorScript -WindowStyle Hidden -PassThru
             $process.Id | Out-File -FilePath $PidFile -Encoding UTF8
             Write-StatusMessage "✅ 監控服務已在後台啟動 (PID: $($process.Id))" "Success"
-        } else {
+        }
+        else {
             # 前台運行
             Write-StatusMessage "監控服務運行中... (按 Ctrl+C 停止)" "Info"
             & node $MonitorScript
         }
-    } catch {
+    }
+    catch {
         Write-StatusMessage "❌ 啟動失敗: $($_.Exception.Message)" "Error"
     }
 }
@@ -118,11 +122,12 @@ function Stop-Monitor {
     }
 
     try {
-        $pid = Get-Content $PidFile
-        Stop-Process -Id $pid -Force
+        $processId = Get-Content $PidFile
+        Stop-Process -Id $processId -Force
         Remove-Item $PidFile -Force
         Write-StatusMessage "🛑 監控服務已停止" "Success"
-    } catch {
+    }
+    catch {
         Write-StatusMessage "❌ 停止失敗: $($_.Exception.Message)" "Error"
     }
 }
@@ -132,10 +137,11 @@ function Show-Status {
     
     # 服務狀態
     if (Test-MonitorRunning) {
-        $pid = Get-Content $PidFile
+        $processId = Get-Content $PidFile
         Write-Host "🔄 服務狀態: " -NoNewline -ForegroundColor Gray
-        Write-Host "運行中 (PID: $pid)" -ForegroundColor Green
-    } else {
+        Write-Host "運行中 (PID: $processId)" -ForegroundColor Green
+    }
+    else {
         Write-Host "🔄 服務狀態: " -NoNewline -ForegroundColor Gray
         Write-Host "已停止" -ForegroundColor Red
     }
@@ -145,7 +151,8 @@ function Show-Status {
     if (Test-NodeExists) {
         $nodeVersion = & node --version
         Write-Host "已安裝 ($nodeVersion)" -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "未安裝" -ForegroundColor Red
     }
 
@@ -153,7 +160,8 @@ function Show-Status {
     Write-Host "📄 監控腳本: " -NoNewline -ForegroundColor Gray
     if (Test-Path $MonitorScript) {
         Write-Host "存在" -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "缺失" -ForegroundColor Red
     }
 
@@ -164,7 +172,8 @@ function Show-Status {
         $content = Get-Content $logPath -ErrorAction SilentlyContinue
         $lineCount = ($content | Measure-Object).Count
         Write-Host "$logPath ($lineCount 筆記錄)" -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "尚未建立" -ForegroundColor Yellow
     }
 
@@ -187,15 +196,15 @@ function Install-Dependencies {
     if (-not (Test-Path $packageJson)) {
         Write-StatusMessage "建立 package.json..." "Info"
         $packageContent = @{
-            name = "universal-token-monitor"
-            version = "1.0.0"
-            description = "Universal Token Monitor for any IDE"
-            main = "universal-token-monitor.js"
+            name         = "universal-token-monitor"
+            version      = "1.0.0"
+            description  = "Universal Token Monitor for any IDE"
+            main         = "universal-token-monitor.js"
             dependencies = @{
                 chokidar = "^3.5.3"
             }
-            scripts = @{
-                start = "node universal-token-monitor.js"
+            scripts      = @{
+                start   = "node universal-token-monitor.js"
                 monitor = "powershell -File universal-monitor.ps1 start"
             }
         } | ConvertTo-Json -Depth 3
@@ -208,7 +217,8 @@ function Install-Dependencies {
         Write-StatusMessage "安裝 Node.js 相依套件..." "Info"
         & npm install chokidar
         Write-StatusMessage "✅ 相依套件安裝完成" "Success"
-    } catch {
+    }
+    catch {
         Write-StatusMessage "❌ 安裝失敗: $($_.Exception.Message)" "Error"
     }
 }
@@ -261,7 +271,8 @@ function Test-Monitor {
                 try {
                     $record = $_ | ConvertFrom-Json
                     Write-Host "  📄 $($record.timestamp): $($record.file_name) ($($record.tokens) tokens)" -ForegroundColor Gray
-                } catch {
+                }
+                catch {
                     Write-Host "  📄 $_" -ForegroundColor Gray
                 }
             }
@@ -271,7 +282,8 @@ function Test-Monitor {
         Remove-Item $testFile -Force -ErrorAction SilentlyContinue
         Write-StatusMessage "✅ 測試完成" "Success"
         
-    } catch {
+    }
+    catch {
         Write-StatusMessage "❌ 測試失敗: $($_.Exception.Message)" "Error"
     }
 }

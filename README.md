@@ -26,12 +26,12 @@ TokenMonitor 是一個專業的 AI Token 使用監控系統，支援跨 IDE 監�
 
 ```powershell
 # 超快速安裝 (推薦) - 一行命令完成！
-iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/quick-install.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/Quick-Install.ps1'))
 ```
 
 **或者自訂安裝：**
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.ps1" -OutFile "install.ps1"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cy5407/TokenMonitor/main/Install-Token-Monitor.ps1" -OutFile "install.ps1"
 .\install.ps1 -TargetPath "C:\MyProject" -Mode full
 ```
 
@@ -39,12 +39,12 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cy5407/TokenMonitor/ma
 
 ```bash
 # 完整安裝 (推薦) - 一行命令完成！
-curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.sh | bash -s -- --target-path ./TokenMonitor --mode full
+curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/Install-Token-Monitor.sh | bash -s -- --target-path ./TokenMonitor --mode full
 ```
 
 **或者輕量安裝：**
 ```bash
-curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.sh | bash -s -- --target-path ./token-monitor --mode lite
+curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/Install-Token-Monitor.sh | bash -s -- --target-path ./token-monitor --mode lite
 ```
 
 ### 📦 手動安裝
@@ -58,7 +58,7 @@ cd TokenMonitor
 npm install
 
 # 執行部署
-.\scripts\deploy-tokenmonitor.ps1 -TargetPath "C:\MyProject" -Mode full
+.\scripts\Deploy-Token-Monitor.ps1 -TargetPath "C:\MyProject" -Mode full
 ```
 
 ## 📊 使用方式
@@ -67,16 +67,16 @@ npm install
 
 ```powershell
 # Windows
-.\scripts\tokusage.ps1 daily
+.\scripts\Token-Usage.ps1 daily
 
 # Linux/macOS (如果安裝了 PowerShell)
-pwsh ./scripts/tokusage.ps1 daily
+pwsh ./scripts/Token-Usage.ps1 daily
 ```
 
 ### 查看詳細統計
 
 ```powershell
-.\scripts\tokusage.ps1 summary
+.\scripts\Token-Usage.ps1 summary
 ```
 
 ### 輕量版使用
@@ -112,11 +112,11 @@ TokenMonitor/
 
 ## 📖 文件
 
-- [📋 使用指南](docs/USAGE-GUIDE.md)
-- [🏗️ 架構說明](docs/ARCHITECTURE.md)
-- [🚀 部署指南](DEPLOYMENT-GUIDE.md)
-- [🌐 GitHub 部署](GITHUB-DEPLOYMENT.md)
-- [💡 部署範例](DEPLOYMENT-EXAMPLES.md)
+- [📋 使用指南](docs/Usage-Guide.md)
+- [🏗️ 架構說明](docs/Architecture.md)
+- [🚀 部署指南](docs/Deployment-Guide.md)
+- [🌐 GitHub 部署](docs/Github-Deployment.md)
+- [💡 部署範例](docs/Deployment-Examples.md)
 
 ## 🎯 版本管理
 

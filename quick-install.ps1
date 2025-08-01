@@ -1,5 +1,5 @@
 # TokenMonitor 快速安裝腳本 - 一行命令安裝
-# 用法: iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/quick-install.ps1'))
+# 用法: iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/Quick-Install.ps1'))
 
 param(
     [string]$TargetPath = (Join-Path $PWD "TokenMonitor"),
@@ -13,10 +13,10 @@ Write-Host "安裝模式: $Mode" -ForegroundColor Gray
 
 try {
     # 下載完整安裝腳本
-    $installScript = (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.ps1')
+    $installScript = (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/Install-Token-Monitor.ps1')
     
     # 創建臨時腳本檔案
-    $tempScript = Join-Path $env:TEMP "install-tokenmonitor-temp.ps1"
+    $tempScript = Join-Path $env:TEMP "Install-Token-Monitor-temp.ps1"
     Set-Content -Path $tempScript -Value $installScript
     
     # 執行安裝

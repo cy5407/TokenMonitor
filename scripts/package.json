@@ -1,0 +1,13 @@
+{
+  "main": "universal-token-monitor.js",
+  "version": "1.0.0",
+  "dependencies": {
+    "chokidar": "^3.5.3"
+  },
+  "description": "Universal Token Monitor for any IDE",
+  "scripts": {
+    "monitor": "powershell -File universal-monitor.ps1 start",
+    "start": "node universal-token-monitor.js"
+  },
+  "name": "universal-token-monitor"
+}

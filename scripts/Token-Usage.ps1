@@ -75,8 +75,8 @@ Push-Location $ProjectRoot
 
 try {
     # 檢查必要檔案
-    if (-not (Test-Path "src/js/professional-token-cli.js")) {
-        Write-Error "找不到 src/js/professional-token-cli.js 檔案"
+    if (-not (Test-Path "src/js/Professional-Token-Cli.js")) {
+        Write-Error "找不到 src/js/Professional-Token-Cli.js 檔案"
         exit 1
     }
 
@@ -90,20 +90,20 @@ try {
     switch ($Command) {
         "daily" {
             Write-Host "🔍 執行每日 Token 使用分析..." -ForegroundColor Green
-            node "src/js/professional-token-cli.js"
+            node "src/js/Professional-Token-Cli.js"
         }
         
         "weekly" {
             Write-Host "📅 執行每週 Token 使用分析..." -ForegroundColor Green
             # 這裡可以擴展為週報邏輯
-            node "src/js/professional-token-cli.js"
+            node "src/js/Professional-Token-Cli.js"
             Write-Host "`n📊 每週報告功能即將推出..." -ForegroundColor Yellow
         }
         
         "monthly" {
             Write-Host "📆 執行每月 Token 使用分析..." -ForegroundColor Green
             # 這裡可以擴展為月報邏輯
-            node "src/js/professional-token-cli.js"
+            node "src/js/Professional-Token-Cli.js"
             Write-Host "`n📊 每月報告功能即將推出..." -ForegroundColor Yellow
         }
         
@@ -114,7 +114,7 @@ try {
         
         default {
             Write-Host "🔍 執行預設每日分析..." -ForegroundColor Green
-            node "src/js/professional-token-cli.js"
+            node "src/js/Professional-Token-Cli.js"
         }
     }
 
