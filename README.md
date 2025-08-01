@@ -20,30 +20,36 @@ TokenMonitor 是一個專業的 AI Token 使用監控系統，支援跨 IDE 監�
 
 ## 🚀 快速開始
 
-### Windows PowerShell 一鍵安裝
+> 🌟 **現已上線！** 你的 TokenMonitor 可以在這裡找到：https://github.com/cy5407/TokenMonitor
 
-\\\powershell
-# 完整安裝
+### 🚀 Windows PowerShell 一鍵安裝
+
+```powershell
+# 超快速安裝 (推薦) - 一行命令完成！
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/quick-install.ps1'))
+```
 
-# 自訂安裝
+**或者自訂安裝：**
+```powershell
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.ps1" -OutFile "install.ps1"
 .\install.ps1 -TargetPath "C:\MyProject" -Mode full
-\\\
+```
 
-### Linux/macOS 一鍵安裝
+### 🐧 Linux/macOS 一鍵安裝
 
-\\\ash
-# 完整安裝
+```bash
+# 完整安裝 (推薦) - 一行命令完成！
 curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.sh | bash -s -- --target-path ./TokenMonitor --mode full
+```
 
-# 輕量安裝
+**或者輕量安裝：**
+```bash
 curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.sh | bash -s -- --target-path ./token-monitor --mode lite
-\\\
+```
 
-### 手動安裝
+### 📦 手動安裝
 
-\\\ash
+```bash
 # 克隆倉庫
 git clone https://github.com/cy5407/TokenMonitor.git
 cd TokenMonitor
@@ -53,35 +59,35 @@ npm install
 
 # 執行部署
 .\scripts\deploy-tokenmonitor.ps1 -TargetPath "C:\MyProject" -Mode full
-\\\
+```
 
 ## 📊 使用方式
 
 ### 查看每日報告
 
-\\\powershell
+```powershell
 # Windows
 .\scripts\tokusage.ps1 daily
 
 # Linux/macOS (如果安裝了 PowerShell)
 pwsh ./scripts/tokusage.ps1 daily
-\\\
+```
 
 ### 查看詳細統計
 
-\\\powershell
+```powershell
 .\scripts\tokusage.ps1 summary
-\\\
+```
 
 ### 輕量版使用
 
-\\\ash
+```bash
 # 查看報告
 node token-monitor.js report
 
 # 記錄使用
 node token-monitor.js log chat_message 150 0.00045
-\\\
+```
 
 ## 📋 部署模式
 
@@ -93,7 +99,7 @@ node token-monitor.js log chat_message 150 0.00045
 
 ## 🏗️ 專案結構
 
-\\\
+```
 TokenMonitor/
 ├── 📂 scripts/          # 主要腳本工具
 ├── 📂 src/js/           # JavaScript 原始碼
@@ -102,7 +108,7 @@ TokenMonitor/
 ├── 📂 tests/            # 測試檔案
 ├── 📂 templates/        # 部署模板
 └── 📂 .kiro/            # Kiro IDE 整合
-\\\
+```
 
 ## 📖 文件
 
@@ -112,14 +118,37 @@ TokenMonitor/
 - [🌐 GitHub 部署](GITHUB-DEPLOYMENT.md)
 - [💡 部署範例](DEPLOYMENT-EXAMPLES.md)
 
+## 🎯 版本管理
+
+### 創建新版本
+
+```bash
+# 創建版本標籤
+git tag -a v1.0.0 -m "TokenMonitor v1.0.0 - Initial Release"
+git push origin v1.0.0
+```
+
+### 更新版本
+
+```bash
+# 修改程式碼後
+git add .
+git commit -m "Update: 新功能描述"
+git push
+
+# 發布新版本
+git tag -a v1.1.0 -m "TokenMonitor v1.1.0 - 新功能"
+git push origin v1.1.0
+```
+
 ## 🤝 貢獻
 
 歡迎提交 Issue 和 Pull Request！
 
 1. Fork 這個專案
-2. 創建你的功能分支 (\git checkout -b feature/AmazingFeature\)
-3. 提交你的變更 (\git commit -m 'Add some AmazingFeature'\)
-4. 推送到分支 (\git push origin feature/AmazingFeature\)
+2. 創建你的功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的變更 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 開啟一個 Pull Request
 
 ## 📄 授權

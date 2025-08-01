@@ -124,15 +124,18 @@ git push origin v1.0.0
 
 **Windows 測試**:
 ```powershell
-# 替換成你的實際 GitHub 路徑
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/你的用戶名/TokenMonitor/main/install-tokenmonitor.ps1" -OutFile "test-install.ps1"
+# 測試一鍵安裝
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/quick-install.ps1'))
+
+# 或測試自訂安裝
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.ps1" -OutFile "test-install.ps1"
 .\test-install.ps1 -TargetPath "C:\TestInstall" -Mode lite
 ```
 
 **Linux/macOS 測試**:
 ```bash
-# 替換成你的實際 GitHub 路徑
-curl -sSL https://raw.githubusercontent.com/你的用戶名/TokenMonitor/main/install-tokenmonitor.sh | bash -s -- --target-path ./test-install --mode lite
+# 測試一鍵安裝
+curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.sh | bash -s -- --target-path ./test-install --mode lite
 ```
 
 ### 3. 驗證安裝結果
