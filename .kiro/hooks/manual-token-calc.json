@@ -1,0 +1,30 @@
+{
+  "name": "Kiro Chat Token 計算器",
+  "description": "手動觸發 Token 消耗分析，監控 Kiro Chat 使用記錄並計算輸入和輸出對話的 Token 消耗量",
+  "version": "1.0.0",
+  "author": "Token Monitor Team",
+  "license": "MIT",
+  "type": "manual",
+  "enabled": true,
+  "trigger": {
+    "type": "manual",
+    "displayName": "分析 Token 使用量",
+    "description": "分析 Kiro Chat 使用記錄並提供詳細的 Token 消耗報告"
+  },
+  "execution": {
+    "type": "script",
+    "script": "manual-token-calc.js",
+    "timeout": 30000
+  },
+  "settings": {
+    "logFile": "data/kiro-usage.log",
+    "outputFormat": "detailed",
+    "includeCostAnalysis": true,
+    "showActivityBreakdown": true
+  },
+  "permissions": [
+    "readFile",
+    "executeScript",
+    "showNotification"
+  ]
+}

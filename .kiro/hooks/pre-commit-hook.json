@@ -1,0 +1,89 @@
+{
+  "name": "Token Monitor - 提交前安全檢查",
+  "description": "在 git commit 前檢查 Go 和配置檔案中的機密資訊和 Token 洩漏",
+  "version": "1.0.0",
+  "author": "Token Monitor Team",
+  "license": "MIT",
+  "type": "preCommit",
+  "enabled": true,
+  "config": {
+    "detection": {
+      "enabled": true,
+      "scanStagedOnly": true,
+      "maxFileSize": 5242880,
+      "fileExtensions": [".go", ".json", ".yaml", ".yml", ".md", ".txt", ".config", ".env"],
+      "excludePatterns": [
+        "vendor/", ".git/", "node_modules/", "dist/", "build/",
+        "*.test", "*.log", ".kiro/docs/", "go.sum"
+      ]
+    },
+    "reporting": {
+      "enabled": true,
+      "outputPath": ".kiro/reports/pre-commit-security-report.json",
+      "showSummary": true
+    },
+    "patterns": {
+      "apiKeys": [
+        "api[_-]?key[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "apikey[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "OPENAI_API_KEY[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "ANTHROPIC_API_KEY[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]"
+      ],
+      "tokens": [
+        "token[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "access[_-]?token[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "bearer[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "github[_-]?token[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]"
+      ],
+      "secrets": [
+        "secret[\"']?\\s*[=:]\\s*['\"][^'\"]{10,}['\"]", 
+        "key[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "password[\"']?\\s*[=:]\\s*['\"][^'\"]{8,}['\"]",
+        "private[_-]?key[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]"
+      ],
+      "credentials": [
+        "username[\"']?\\s*[=:]\\s*['\"][^'\"]+['\"]",
+        "user[\"']?\\s*[=:]\\s*['\"][^'\"]+['\"]",
+        "credential[\"']?\\s*[=:]\\s*['\"][^'\"]+['\"]"
+      ],
+      "urls": [
+        "https?://[^\\s\"'<>]+\\.(com|org|net|io)/[^\\s\"'<>]*[a-zA-Z0-9]{10,}",
+        "mongodb://[^\\s\"'<>]+",
+        "postgres://[^\\s\"'<>]+",
+        "mysql://[^\\s\"'<>]+"
+      ],
+      "excludeValues": [
+        "example.com",
+        "localhost",
+        "127.0.0.1",
+        "test123",
+        "password123",
+        "secret123",
+        "your-api-key",
+        "your-token",
+        "placeholder",
+        "dummy",
+        "sample",
+        "mock",
+        "fake",
+        "demo",
+        "xxx",
+        "yyy",
+        "zzz"
+      ]
+    }
+  },
+  "script": "pre-commit-hook.js",
+  "triggers": [
+    {
+      "event": "preCommit"
+    }
+  ],
+  "permissions": [
+    "readFile",
+    "writeFile", 
+    "executeCommand",
+    "showNotification",
+    "accessGit"
+  ]
+}

@@ -1,0 +1,51 @@
+name: Release TokenMonitor
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install --production
+        
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: TokenMonitor ${{ github.ref }}
+          body: |
+            ## 🚀 TokenMonitor Release
+            
+            ### 快速安裝
+            
+            **Windows PowerShell:**
+            ```powershell
+            iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/cy5407/TokenMonitor/main/quick-install.ps1'))
+            ```
+            
+            **Linux/macOS:**
+            ```bash
+            curl -sSL https://raw.githubusercontent.com/cy5407/TokenMonitor/main/install-tokenmonitor.sh | bash -s -- --target-path ./TokenMonitor --mode full
+            ```
+            
+            ### 功能特色
+            - ✅ 跨 IDE Token 監控
+            - ✅ 即時成本分析
+            - ✅ 專業統計報表
+            - ✅ 多種部署模式
+            
+          draft: false
+          prerelease: false

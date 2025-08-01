@@ -1,0 +1,80 @@
+{
+  "name": "Token Monitor - 檔案保存安全檢查",
+  "description": "在保存 Go 和配置檔案時檢查機密資訊和 Token 洩漏",
+  "version": "1.0.0", 
+  "author": "Token Monitor Team",
+  "license": "MIT",
+  "type": "onSave",
+  "enabled": true,
+  "config": {
+    "detection": {
+      "enabled": true,
+      "fileExtensions": [".go", ".json", ".yaml", ".yml", ".md", ".txt", ".config", ".env"],
+      "maxFileSize": 1048576,
+      "excludePatterns": [
+        "vendor/", ".git/", "node_modules/", "dist/", "build/",
+        "*.test", "*.log", ".kiro/docs/"
+      ]
+    },
+    "visualization": {
+      "enabled": true,
+      "highlightColor": "#FF5252",
+      "showLineNumbers": true
+    },
+    "notification": {
+      "enabled": true,
+      "showPopup": true,
+      "popupDuration": 3000
+    },
+    "patterns": {
+      "apiKeys": [
+        "api[_-]?key[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "apikey[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]"
+      ],
+      "tokens": [
+        "token[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "access[_-]?token[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "bearer[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]"
+      ],
+      "secrets": [
+        "secret[\"']?\\s*[=:]\\s*['\"][^'\"]{10,}['\"]", 
+        "key[\"']?\\s*[=:]\\s*['\"][^'\"]{20,}['\"]",
+        "password[\"']?\\s*[=:]\\s*['\"][^'\"]{8,}['\"]"
+      ],
+      "credentials": [
+        "username[\"']?\\s*[=:]\\s*['\"][^'\"]+['\"]",
+        "user[\"']?\\s*[=:]\\s*['\"][^'\"]+['\"]"
+      ],
+      "urls": [
+        "https?://[^\\s\"'<>]+",
+        "mongodb://[^\\s\"'<>]+",
+        "postgres://[^\\s\"'<>]+"
+      ],
+      "excludeValues": [
+        "example.com",
+        "localhost",
+        "127.0.0.1",
+        "test123",
+        "password123",
+        "secret123",
+        "your-api-key",
+        "your-token",
+        "placeholder",
+        "dummy",
+        "sample"
+      ]
+    }
+  },
+  "script": "file-save-hook.js",
+  "triggers": [
+    {
+      "event": "onSave",
+      "patterns": ["TokenMonitor/**/*.go", "TokenMonitor/**/*.json", "TokenMonitor/**/*.yaml", "TokenMonitor/**/*.yml", "TokenMonitor/**/*.md"]
+    }
+  ],
+  "permissions": [
+    "readFile",
+    "showNotification",
+    "highlightText"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "name": "kiro-token-monitor",
+  "version": "1.0.0",
+  "description": "AI Token usage monitoring and cost analysis tool for Kiro IDE and other development environments",
+  "main": "index.js",
+  "bin": {
+    "tokusage": "./bin/tokusage.js"
+  },
+  "scripts": {
+    "postinstall": "node install.js",
+    "test": "node test.js",
+    "start": "node index.js",
+    "daily": "node bin/tokusage.js daily",
+    "summary": "node bin/tokusage.js summary",
+    "status": "node bin/tokusage.js status"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "chokidar": "^3.5.3"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "keywords": [
+    "token",
+    "monitoring",
+    "ai",
+    "kiro",
+    "cost",
+    "analysis",
+    "claude",
+    "gpt",
+    "usage",
+    "tracking",
+    "ide",
+    "development"
+  ],
+  "author": {
+    "name": "TokenMonitor Team",
+    "email": "support@tokenmonitor.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/kiro-token-monitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/kiro-token-monitor/issues"
+  },
+  "homepage": "https://github.com/your-org/kiro-token-monitor#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "bin/",
+    "install.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "preferGlobal": false,
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ]
+}

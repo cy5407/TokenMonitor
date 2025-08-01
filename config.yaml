@@ -1,0 +1,113 @@
+# Token Monitor 配置檔案
+
+# 定價設定
+pricing:
+  claude-sonnet-4.0:
+    input: 3.0          # USD per 1M input tokens
+    output: 15.0        # USD per 1M output tokens
+    cache_read: 0.30    # USD per 1M cache read tokens
+    cache_write: 3.75   # USD per 1M cache write tokens
+    batch_discount: 0.5 # Batch processing discount (50%)
+  
+  claude-opus-4.0:
+    input: 15.0
+    output: 75.0
+    cache_read: 1.5
+    cache_write: 18.75
+    batch_discount: 0.5
+  
+  claude-haiku-3.5:
+    input: 0.8
+    output: 4.0
+    cache_read: 0.08
+    cache_write: 1.0
+    batch_discount: 0.5
+
+# 活動識別模式
+activities:
+  patterns:
+    coding:
+      keywords: ["function", "class", "implement", "程式", "函數", "變數", "方法"]
+      regex_patterns:
+        - "寫.*程式"
+        - "實作.*功能"
+        - "建立.*函數"
+        - "定義.*類別"
+    
+    debugging:
+      keywords: ["error", "bug", "fix", "錯誤", "修復", "除錯", "問題"]
+      regex_patterns:
+        - "修復.*問題"
+        - "解決.*錯誤"
+        - "除錯.*程式"
+    
+    documentation:
+      keywords: ["README", "document", "文件", "說明", "註解", "文檔"]
+      regex_patterns:
+        - "更新.*文件"
+        - "撰寫.*說明"
+        - "建立.*文檔"
+    
+    spec-development:
+      keywords: ["spec", "requirement", "design", "需求", "設計", "規格", "架構"]
+      regex_patterns:
+        - "建立.*規格"
+        - "設計.*架構"
+        - "定義.*需求"
+    
+    chat:
+      keywords: ["chat", "question", "help", "問題", "協助", "詢問", "請教"]
+      regex_patterns:
+        - "詢問.*問題"
+        - "尋求.*協助"
+        - "請教.*方法"
+
+# 儲存設定
+storage:
+  path: "./data"              # 資料儲存路徑
+  backup_interval: "24h"      # 備份間隔
+  retention_days: 90          # 資料保留天數
+  compression: true           # 是否壓縮儲存
+
+# Token 計算設定
+token_calculation:
+  preferred_method: "tiktoken"    # 偏好的計算方法
+  fallback_method: "estimation"   # 備用計算方法
+  cache_enabled: true             # 是否啟用快取
+  cache_size: 1000               # 快取大小
+  
+  # 估算演算法參數
+  estimation:
+    english_chars_per_token: 4.0   # 英文字符每 token 比例
+    chinese_chars_per_token: 1.5   # 中文字符每 token 比例
+
+# 監控設定
+monitoring:
+  enabled: true
+  interval: 60                # 監控間隔（秒）
+  log_level: "info"          # 日誌等級
+  real_time_display: false   # 是否即時顯示
+
+# 報告設定
+reporting:
+  default_format: "json"     # 預設報告格式
+  include_charts: true       # HTML 報告是否包含圖表
+  timezone: "Asia/Taipei"    # 時區設定
+  
+  # HTML 報告樣式
+  html_theme: "default"      # HTML 主題
+  chart_colors:
+    - "#3498db"
+    - "#e74c3c"
+    - "#2ecc71"
+    - "#f39c12"
+    - "#9b59b6"
+
+# 優化建議設定
+optimization:
+  enabled: true
+  confidence_threshold: 0.7   # 建議信心度閾值
+  min_saving_threshold: 0.01  # 最小節省金額閾值（USD）
+
+# Hook 測試 - 檢查 Token Monitor 是否正常運作
+# 測試時間: 2025-07-31

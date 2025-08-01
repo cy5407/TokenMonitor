@@ -1,0 +1,14 @@
+{
+    "name": "parallel-task-manager",
+    "description": "管理併行任務執行",
+    "trigger": "manual",
+    "button": {
+        "text": "開始併行任務",
+        "icon": "⚡"
+    },
+    "prompt": "我需要併行處理以下任務，請幫我制定執行計畫並開始實作：\n\n**高優先級任務：**\n1. CSV 格式報告生成器 (預估 2 小時)\n2. HTML 格式報告生成器 (預估 3 小時)\n\n**中優先級任務：**\n3. 資料持久化系統 (預估 4 小時)\n\n**低優先級任務：**\n4. CLI 介面增強 (預估 2 小時)\n\n請建議最佳的併行執行策略，並開始實作第一個任務。",
+    "context": [
+        "#Folder:internal/reporter",
+        "#File:.kiro/specs/token-monitoring-enhancement/tasks.md"
+    ]
+}

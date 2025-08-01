@@ -1,0 +1,25 @@
+{
+  "name": "Token Monitor Hook",
+  "description": "自動監控 Kiro IDE 中的 Token 使用量",
+  "version": "1.0.0",
+  "trigger": {
+    "events": [
+      "chat.message.sent",
+      "chat.message.received",
+      "file.save",
+      "agent.task.completed"
+    ]
+  },
+  "execution": {
+    "type": "script",
+    "script": "token-monitor-hook.js",
+    "timeout": 30000
+  },
+  "settings": {
+    "enabled": true,
+    "autoStart": true,
+    "logLevel": "info",
+    "outputFormat": "json",
+    "storageEnabled": true
+  }
+}

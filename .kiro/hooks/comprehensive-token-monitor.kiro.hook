@@ -1,0 +1,29 @@
+{
+  "name": "全面 Token 監控",
+  "description": "自動監控所有 Kiro 活動的 Token 消耗，包括聊天對話、工具調用、程式碼生成等",
+  "version": "2.0.0",
+  "when": {
+    "type": "always",
+    "events": [
+      "file.saved",
+      "file.created",
+      "file.modified",
+      "chat.message.sent",
+      "chat.message.received",
+      "tool.executed",
+      "agent.task.completed"
+    ]
+  },
+  "then": {
+    "type": "executeScript",
+    "script": "comprehensive-token-monitor.js",
+    "async": true,
+    "timeout": 60000
+  },
+  "settings": {
+    "enabled": true,
+    "priority": "high",
+    "logLevel": "info",
+    "realtimeDisplay": true
+  }
+}

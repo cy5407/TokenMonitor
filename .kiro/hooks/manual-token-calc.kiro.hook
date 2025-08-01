@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Manual Token Calculator",
+  "description": "Manually trigger token consumption analysis for Kiro Chat conversations",
+  "version": "1",
+  "when": {
+    "type": "manualTrigger"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Please analyze the current Kiro Chat usage log file (data/kiro-usage.log) and provide a comprehensive token consumption report. Include detailed statistics for input tokens, output tokens, total tokens consumed, cost analysis, activity type breakdown, and recent conversation history."
+  }
+}

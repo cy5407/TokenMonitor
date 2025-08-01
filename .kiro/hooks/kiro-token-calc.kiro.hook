@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Kiro Chat Token Calculator",
+  "description": "Monitors Kiro Chat usage logs and automatically calculates token consumption for input and output conversations",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "patterns": [
+      "data/kiro-usage.log"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "請分析更新後的 Kiro Chat 使用記錄檔案，並計算輸入和輸出對話的 Token 消耗量。請提供詳細的 Token 使用分析，包括輸入 Token、輸出 Token 和總 Token 消耗量，並涵蓋程式碼、Markdown 文件等 IDE AI Agent 撰寫的所有輸出內容。如果可能的話，也請根據 Token 使用量計算相關的成本。"
+  }
+}

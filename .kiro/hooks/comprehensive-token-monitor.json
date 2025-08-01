@@ -1,0 +1,52 @@
+{
+  "name": "全面 Token 監控器",
+  "description": "自動監控所有 Kiro 活動的 Token 消耗，包括聊天對話、工具調用、程式碼生成、文件創建等",
+  "version": "2.0.0",
+  "author": "Token Monitor Team",
+  "license": "MIT",
+  "type": "automatic",
+  "enabled": true,
+  "triggers": [
+    {
+      "type": "fileChange",
+      "patterns": ["**/*"],
+      "events": ["created", "modified", "saved"],
+      "excludePatterns": ["node_modules/**", ".git/**", "*.log"]
+    },
+    {
+      "type": "chatEvent",
+      "events": ["message.sent", "message.received", "conversation.turn"]
+    },
+    {
+      "type": "toolExecution",
+      "events": ["tool.fsWrite", "tool.fsAppend", "tool.strReplace", "tool.executePwsh", "tool.readFile"]
+    },
+    {
+      "type": "agentActivity",
+      "events": ["agent.codeGeneration", "agent.documentGeneration", "agent.taskExecution"]
+    }
+  ],
+  "execution": {
+    "type": "script",
+    "script": "comprehensive-token-monitor.js",
+    "timeout": 60000,
+    "async": true
+  },
+  "settings": {
+    "logFile": "data/kiro-usage.log",
+    "realtimeDisplay": true,
+    "costTracking": true,
+    "sessionTracking": true,
+    "detailedLogging": true,
+    "autoAnalysis": true,
+    "analysisInterval": 300000
+  },
+  "permissions": [
+    "readFile",
+    "writeFile",
+    "executeScript",
+    "showNotification",
+    "accessFileSystem",
+    "monitorEvents"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "generated_at": "2025-07-30T14:11:09.5654944+08:00",
+  "total_records": 5,
+  "time_range": {
+    "start": "2025-07-29T14:11:09.5242925+08:00",
+    "end": "2025-07-29T22:11:09.5242925+08:00"
+  },
+  "summary": {
+    "total_activities": 5,
+    "total_tokens": {
+      "input_tokens": 650,
+      "output_tokens": 1150,
+      "total_tokens": 1800
+    },
+    "activity_counts": {
+      "chat": 1,
+      "coding": 2,
+      "debugging": 1,
+      "documentation": 1
+    },
+    "average_tokens_per_activity": 360
+  },
+  "by_activity": {
+    "chat": {
+      "activity_type": "chat",
+      "count": 1,
+      "tokens": {
+        "input_tokens": 120,
+        "output_tokens": 180,
+        "total_tokens": 300
+      },
+      "average_tokens": 300,
+      "percentage": 20
+    },
+    "coding": {
+      "activity_type": "coding",
+      "count": 2,
+      "tokens": {
+        "input_tokens": 350,
+        "output_tokens": 700,
+        "total_tokens": 1050
+      },
+      "average_tokens": 525,
+      "percentage": 40
+    },
+    "debugging": {
+      "activity_type": "debugging",
+      "count": 1,
+      "tokens": {
+        "input_tokens": 100,
+        "output_tokens": 150,
+        "total_tokens": 250
+      },
+      "average_tokens": 250,
+      "percentage": 20
+    },
+    "documentation": {
+      "activity_type": "documentation",
+      "count": 1,
+      "tokens": {
+        "input_tokens": 80,
+        "output_tokens": 120,
+        "total_tokens": 200
+      },
+      "average_tokens": 200,
+      "percentage": 20
+    }
+  },
+  "statistics": {
+    "token_distribution": {
+      "total": 1800,
+      "average": 360,
+      "min": 200,
+      "max": 600,
+      "median": 300,
+      "input": 650,
+      "output": 1150
+    },
+    "activity_trends": {
+      "hourly_distribution": {
+        "14": 1,
+        "16": 1,
+        "18": 1,
+        "20": 1,
+        "22": 1
+      },
+      "peak_hour": 18,
+      "peak_hour_count": 1
+    },
+    "efficiency_metrics": {
+      "tokens_per_activity": {
+        "chat": 300,
+        "coding": 525,
+        "debugging": 250,
+        "documentation": 200
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "name": "Token Monitor Task Completion Hook",
+  "description": "Token Monitor 專案的任務完成報告 hook",
+  "version": "1.0.0",
+  "author": "Token Monitor Team",
+  "license": "MIT",
+  "type": "onResponse",
+  "enabled": true,
+  "config": {
+    "detection": {
+      "enabled": true,
+      "completionKeywords": [
+        "完成", "完成了", "已完成", "成功完成",
+        "實作完成", "開發完成", "整合完成", "部署完成",
+        "建立完成", "安裝完成", "配置完成", "測試完成",
+        "任務.*完成", "功能.*完成"
+      ],
+      "taskIndicators": [
+        "任務", "專案", "功能", "模組", "系統",
+        "Token", "計算", "監控", "分析", "報告",
+        "CLI", "介面", "測試", "實作", "整合"
+      ],
+      "excludePatterns": [
+        "檢查完成", "讀取完成", "分析完成", "說明完成",
+        "解釋完成", "回答完成", "查詢完成"
+      ]
+    },
+    "reporting": {
+      "enabled": true,
+      "mandatory": true,
+      "outputDir": "../docs",
+      "filenameFormat": "YYYYMMDD-{taskName}任務完成報告.md"
+    },
+    "git": {
+      "enabled": true,
+      "autoAdd": true,
+      "autoCommit": true,
+      "commitMessageFormat": "完成{taskName} - 添加任務完成報告",
+      "askBeforePush": true
+    },
+    "userInteraction": {
+      "confirmBeforeReport": true,
+      "allowSkip": true,
+      "skipReasons": [
+        "簡單查詢任務",
+        "測試或實驗性工作", 
+        "文檔更新",
+        "其他原因"
+      ]
+    }
+  },
+  "script": "task-completion-hook.js",
+  "triggers": [
+    {
+      "event": "onResponse",
+      "patterns": ["TokenMonitor/**/*", ".kiro/specs/token-monitoring-enhancement/**/*"]
+    }
+  ],
+  "permissions": [
+    "readFile",
+    "writeFile",
+    "executeCommand",
+    "showNotification",
+    "accessGit",
+    "userInput"
+  ]
+}

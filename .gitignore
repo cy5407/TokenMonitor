@@ -1,0 +1,46 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 使用記錄檔案
+data/kiro-usage.log
+*/data/kiro-usage.log
+token-usage.log
+*/token-usage.log
+
+# 臨時檔案
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE 檔案
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 測試輸出
+test-output/
+coverage/
+
+# 編譯輸出
+build/
+dist/
+
+# 環境變數
+.env
+.env.local
+
+# PowerShell 執行記錄
+*.ps1.log
+
+# 備份檔案
+*.bak
+*.backup
+
+# 系統檔案
+.DS_Store
+desktop.ini

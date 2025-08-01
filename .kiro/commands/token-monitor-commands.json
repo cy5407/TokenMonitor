@@ -1,0 +1,36 @@
+{
+  "commands": [
+    {
+      "id": "token-monitor.calculate",
+      "title": "計算 Token 數量",
+      "description": "計算選中文本的 Token 數量",
+      "category": "Token Monitor",
+      "keybinding": "Ctrl+Shift+T",
+      "when": "editorHasSelection"
+    },
+    {
+      "id": "token-monitor.compare",
+      "title": "比較計算方法",
+      "description": "比較不同 Token 計算方法的結果",
+      "category": "Token Monitor"
+    },
+    {
+      "id": "token-monitor.report",
+      "title": "生成使用報告",
+      "description": "生成 Token 使用量報告",
+      "category": "Token Monitor"
+    },
+    {
+      "id": "token-monitor.monitor",
+      "title": "開始監控",
+      "description": "開始即時 Token 使用量監控",
+      "category": "Token Monitor"
+    },
+    {
+      "id": "token-monitor.cost",
+      "title": "成本分析",
+      "description": "分析 Token 使用成本",
+      "category": "Token Monitor"
+    }
+  ]
+}
