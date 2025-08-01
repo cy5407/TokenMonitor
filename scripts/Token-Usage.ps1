@@ -124,9 +124,11 @@ try {
     Write-Host "   • 使用 'tokusage summary' 查看詳細統計" -ForegroundColor Gray
     Write-Host "   • Token 監控系統會自動記錄所有 Kiro 活動" -ForegroundColor Gray
 
-} catch {
+}
+catch {
     Write-Error "執行失敗: $_"
     exit 1
-} finally {
+}
+finally {
     Pop-Location
 }
